@@ -79,19 +79,19 @@ export const SalesEntryView = () => {
     <div className="p-8 animate-in fade-in duration-500 space-y-6">
       
       {/* Summary Header */}
-      <Card className="bg-slate-800/80 backdrop-blur-md border-slate-700 p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <Card className="bg-white border-[#EBE6DC] shadow-sm p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div className="flex flex-wrap gap-8">
           <div>
-            <p className="text-xs text-slate-400 font-bold uppercase tracking-wider mb-1">Catálogo Activo</p>
-            <p className="text-xl font-bold text-slate-100">{salesItems.length} items</p>
+            <p className="text-xs text-[#6B7C72] font-bold uppercase tracking-wider mb-1">Catálogo Activo</p>
+            <p className="text-xl font-bold text-[#0F281E]">{salesItems.length} items</p>
           </div>
           <div>
-            <p className="text-xs text-slate-400 font-bold uppercase tracking-wider mb-1">Unidades Vendidas (Hoy)</p>
-            <p className="text-xl font-bold text-slate-100">{totalUnitsSold}</p>
+            <p className="text-xs text-[#6B7C72] font-bold uppercase tracking-wider mb-1">Unidades Vendidas (Hoy)</p>
+            <p className="text-xl font-bold text-[#0F281E]">{totalUnitsSold}</p>
           </div>
           <div>
-            <p className="text-xs text-cyan-400 font-bold uppercase tracking-wider mb-1">Total Ingresos (Hoy)</p>
-            <p className="text-3xl font-black text-cyan-400">{formatDOP(todayTotalEarnings)}</p>
+            <p className="text-xs text-[#6B7C72] font-bold uppercase tracking-wider mb-1">Total Ingresos (Hoy)</p>
+            <p className="text-3xl font-black text-[#C8963E]">{formatDOP(todayTotalEarnings)}</p>
           </div>
         </div>
         
@@ -100,7 +100,7 @@ export const SalesEntryView = () => {
             <Button 
               variant="danger" 
               onClick={openResetModal}
-              className="bg-red-500/10 text-red-400 hover:bg-red-500/20 border border-red-500/20"
+              className="bg-[#FDE8E6] text-[#A83226] hover:bg-[#FDE8E6]/80 border border-[#A83226]/30 shadow-none font-medium"
             >
               <RotateCcw size={18} className="mr-2" /> Reiniciar Día
             </Button>
@@ -114,41 +114,41 @@ export const SalesEntryView = () => {
 
       {/* Add Item Form */}
       {showAddForm && (
-        <Card className="border-emerald-500/30 bg-slate-800/90 shadow-emerald-900/10 animate-in slide-in-from-top-4">
+        <Card className="border-[#EBE6DC] bg-white shadow-sm animate-in slide-in-from-top-4">
           <form onSubmit={handleAddItem} className="flex flex-col md:flex-row items-end gap-4">
             <div className="flex-1 w-full space-y-1">
-              <label className="text-xs text-slate-400 uppercase font-bold tracking-wider">Nombre del Producto</label>
+              <label className="text-xs text-[#6B7C72] uppercase font-bold tracking-wider">Nombre del Producto</label>
               <input 
                 type="text" 
                 placeholder="Ej. Latte Machiato" 
                 value={newItemName} 
                 onChange={(e) => setNewItemName(e.target.value)} 
                 required 
-                className="w-full bg-slate-900 border border-slate-700 text-slate-100 rounded-lg px-3 py-2.5 outline-none focus:border-emerald-500"
+                className="w-full bg-white border border-[#EBE6DC] text-[#2C3E35] rounded-lg px-3 py-2.5 outline-none focus:border-[#C8963E] shadow-sm"
               />
             </div>
             <div className="w-full md:w-1/4 space-y-1">
-              <label className="text-xs text-slate-400 uppercase font-bold tracking-wider">Categoría</label>
+              <label className="text-xs text-[#6B7C72] uppercase font-bold tracking-wider">Categoría</label>
               <input 
                 type="text" 
                 placeholder="Ej. Café Caliente" 
                 value={newCategory} 
                 onChange={(e) => setNewCategory(e.target.value)} 
                 required 
-                className="w-full bg-slate-900 border border-slate-700 text-slate-100 rounded-lg px-3 py-2.5 outline-none focus:border-emerald-500"
+                className="w-full bg-white border border-[#EBE6DC] text-[#2C3E35] rounded-lg px-3 py-2.5 outline-none focus:border-[#C8963E] shadow-sm"
               />
             </div>
             <div className="w-full md:w-1/4 space-y-1">
-              <label className="text-xs text-slate-400 uppercase font-bold tracking-wider">Precio Unitario</label>
+              <label className="text-xs text-[#6B7C72] uppercase font-bold tracking-wider">Precio Unitario</label>
               <div className="relative">
-                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500">RD$</span>
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#6B7C72]">RD$</span>
                 <input 
                   type="number" 
                   placeholder="0" 
                   value={newUnitPrice} 
                   onChange={(e) => setNewUnitPrice(e.target.value)} 
                   required 
-                  className="w-full bg-slate-900 border border-slate-700 text-slate-100 rounded-lg pl-10 pr-3 py-2.5 outline-none focus:border-emerald-500"
+                  className="w-full bg-white border border-[#EBE6DC] text-[#2C3E35] rounded-lg pl-10 pr-3 py-2.5 outline-none focus:border-[#C8963E] shadow-sm"
                 />
               </div>
             </div>
@@ -162,13 +162,13 @@ export const SalesEntryView = () => {
       {/* Toolbar: Search & Categories */}
       <div className="space-y-4">
         <div className="relative w-full max-w-md">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-[#6B7C72]" size={18} />
           <input
             type="text"
             placeholder="Buscar productos..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-slate-800 border border-slate-700 text-slate-100 rounded-xl pl-10 pr-4 py-3 outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 shadow-sm"
+            className="w-full bg-white border border-[#EBE6DC] text-[#2C3E35] rounded-xl pl-10 pr-4 py-3 outline-none focus:border-[#C8963E] focus:ring-1 focus:ring-[#C8963E] shadow-sm placeholder:text-[#6B7C72]/60"
           />
         </div>
         
@@ -180,8 +180,8 @@ export const SalesEntryView = () => {
               onClick={() => setActiveCategory(cat)}
               className={`px-4 py-1.5 rounded-full text-sm font-semibold transition-all ${
                 activeCategory === cat 
-                  ? 'bg-cyan-500 text-white shadow-md shadow-cyan-900/40' 
-                  : 'bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-slate-200 border border-slate-700'
+                  ? 'bg-[#C8963E] text-white shadow-sm' 
+                  : 'bg-white text-[#6B7C72] hover:bg-[#F9F7F2] hover:text-[#0F281E] border border-[#EBE6DC]'
               }`}
             >
               {cat}
@@ -190,7 +190,7 @@ export const SalesEntryView = () => {
           {(searchQuery || activeCategory !== 'All') && (
             <button 
               onClick={() => { setSearchQuery(''); setActiveCategory('All'); }}
-              className="px-4 py-1.5 rounded-full text-sm font-semibold text-slate-400 hover:text-slate-200 transition-colors flex items-center"
+              className="px-4 py-1.5 rounded-full text-sm font-semibold text-[#6B7C72] hover:text-[#0F281E] transition-colors flex items-center"
             >
               <X size={14} className="mr-1" /> Limpiar filtros
             </button>
@@ -201,26 +201,26 @@ export const SalesEntryView = () => {
       {/* POS Catalog Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredItems.length === 0 ? (
-          <div className="col-span-full py-12 text-center bg-slate-800/50 rounded-2xl border border-slate-700/50 border-dashed">
-            <Coffee size={48} className="mx-auto text-slate-600 mb-4" />
-            <p className="text-slate-400 font-medium text-lg">No se encontraron productos.</p>
+          <div className="col-span-full py-12 text-center bg-white rounded-2xl border border-[#EBE6DC] border-dashed">
+            <Coffee size={48} className="mx-auto text-[#6B7C72]/60 mb-4" />
+            <p className="text-[#6B7C72] font-medium text-lg">No se encontraron productos.</p>
           </div>
         ) : (
           filteredItems.map(item => {
             const subtotal = (item.unitPrice || 0) * (item.unitsSold || 0);
             return (
-              <Card key={item.id} className="p-5 flex flex-col justify-between border-slate-700 hover:border-slate-600 transition-colors">
+              <Card key={item.id} className="p-5 flex flex-col justify-between border-[#EBE6DC] hover:border-[#C8963E]/40 transition-colors shadow-sm bg-white">
                 <div>
                   <div className="flex justify-between items-start mb-3">
                     <div>
-                      <span className="inline-block px-2 py-1 bg-slate-700/50 text-slate-300 text-[10px] font-bold uppercase tracking-wider rounded-md mb-2">
+                      <span className="inline-block px-2.5 py-1 bg-[#FEF3D6] text-[#8F6010] text-[10px] font-bold uppercase tracking-wider rounded-md mb-2">
                         {item.category}
                       </span>
-                      <h3 className="text-lg font-bold text-slate-100 leading-tight">{item.name}</h3>
+                      <h3 className="text-lg font-bold text-[#0F281E] leading-tight">{item.name}</h3>
                     </div>
                     <button 
                       onClick={() => openDeleteModal(item)}
-                      className="text-slate-500 hover:text-red-400 p-1 rounded-md hover:bg-slate-700 transition-colors"
+                      className="text-[#6B7C72] hover:text-[#A83226] p-1.5 rounded-md hover:bg-[#FDE8E6] transition-colors"
                       title="Eliminar producto"
                     >
                       <Trash2 size={16} />
@@ -228,42 +228,42 @@ export const SalesEntryView = () => {
                   </div>
                   
                   <div className="mb-4">
-                    <label className="text-xs text-slate-400 font-semibold mb-1 block">Precio C/U</label>
+                    <label className="text-xs text-[#6B7C72] font-semibold mb-1 block">Precio C/U</label>
                     <div className="relative">
-                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 font-bold">RD$</span>
+                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#6B7C72] font-bold">RD$</span>
                       <input 
                         type="number"
                         value={item.unitPrice || ''}
                         onChange={(e) => updateUnitPrice(item.id, e.target.value)}
-                        className="w-full bg-slate-900/50 border border-slate-700 text-slate-200 text-sm font-bold rounded-lg pl-10 pr-3 py-2 outline-none focus:border-cyan-500 transition-colors"
+                        className="w-full bg-[#F9F7F2] border border-[#EBE6DC] text-[#2C3E35] text-sm font-bold rounded-lg pl-10 pr-3 py-2 outline-none focus:border-[#C8963E] transition-colors"
                       />
                     </div>
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-slate-700/50">
+                <div className="pt-4 border-t border-[#EBE6DC]">
                   <div className="flex items-center justify-between mb-4">
-                    <p className="text-xs text-slate-400 uppercase font-bold">Total Generado</p>
-                    <p className="text-lg font-black text-emerald-400">{formatDOP(subtotal)}</p>
+                    <p className="text-xs text-[#6B7C72] uppercase font-bold">Total Generado</p>
+                    <p className="text-lg font-black text-[#C8963E]">{formatDOP(subtotal)}</p>
                   </div>
                   
                   {/* Stepper */}
-                  <div className="flex items-center justify-between bg-slate-900 rounded-xl p-1 border border-slate-700">
+                  <div className="flex items-center justify-between bg-[#F9F7F2] rounded-xl p-1 border border-[#EBE6DC]">
                     <button 
                       onClick={() => decrementSale(item.id)}
                       disabled={item.unitsSold === 0}
-                      className="p-3 text-slate-400 hover:text-red-400 hover:bg-slate-800 rounded-lg transition-colors disabled:opacity-50 disabled:hover:bg-transparent disabled:hover:text-slate-400"
+                      className="p-3 text-[#6B7C72] hover:text-[#A83226] hover:bg-white rounded-lg transition-colors disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:text-[#6B7C72]"
                     >
                       <MinusCircle size={24} />
                     </button>
                     
-                    <div className="flex-1 text-center font-bold text-slate-100">
-                      {item.unitsSold} <span className="text-xs font-normal text-slate-400 ml-1">vendidas</span>
+                    <div className="flex-1 text-center font-bold text-[#0F281E]">
+                      {item.unitsSold} <span className="text-xs font-normal text-[#6B7C72] ml-1">vendidas</span>
                     </div>
 
                     <button 
                       onClick={() => incrementSale(item.id)}
-                      className="p-3 text-emerald-400 hover:bg-emerald-500/20 rounded-lg transition-colors"
+                      className="p-3 text-[#C8963E] hover:bg-white rounded-lg transition-colors"
                     >
                       <PlusCircle size={24} />
                     </button>

@@ -1,11 +1,169 @@
 @import "tailwindcss";
 
+:root {
+  /* 1. Sidebar & Structural Navigation */
+  --sidebar-bg: #0F281E;
+  --sidebar-text: #D8D1C2;
+  --sidebar-active-bg: #183D2F;
+  --sidebar-accent: #C99F5B;
+  --sidebar-border: #1B3D2F;
+
+  /* 2. Workspace Canvas & Panels */
+  --canvas-bg: #F9F7F2;
+  --card-bg: #FFFFFF;
+  --card-border: #EBE6DC;
+  --card-shadow: 0 4px 16px -2px rgba(15, 40, 30, 0.05);
+
+  /* 3. Typography & Readability */
+  --text-heading: #0F281E;
+  --text-body: #2C3E35;
+  --text-muted: #6B7C72;
+
+  /* 4. Accent & Key Metrics */
+  --metric-hero: #C8963E;
+  --metric-secondary: #B57E2F;
+  --action-primary: #C8963E;
+  --action-hover: #B3822E;
+
+  /* 5. Data Visualization */
+  --chart-primary: #C8963E;
+  --chart-secondary: #0F281E;
+  --chart-grid: #E6E1D6;
+
+  /* 6. Café Status Badges & Semantic Alerts */
+  --badge-success-bg: #E6F4EA;
+  --badge-success-text: #1E653F;
+  --badge-warning-bg: #FEF3D6;
+  --badge-warning-text: #8F6010;
+  --badge-danger-bg: #FDE8E6;
+  --badge-danger-text: #A83226;
+}
+
 @theme {
-  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Brand Explicit Tokens */
+  --color-forest: #0F281E;
+  --color-forest-active: #183D2F;
+  --color-forest-border: #1B3D2F;
+  --color-parchment: #D8D1C2;
+  --color-canvas: #F9F7F2;
+  --color-card-border: #EBE6DC;
+
+  --color-gold-hero: #C8963E;
+  --color-gold-hover: #B3822E;
+  --color-gold-secondary: #B57E2F;
+  --color-gold-warm: #C99F5B;
+
+  /* Semantic Badge Tokens */
+  --color-badge-success-bg: #E6F4EA;
+  --color-badge-success-text: #1E653F;
+  --color-badge-warning-bg: #FEF3D6;
+  --color-badge-warning-text: #8F6010;
+  --color-badge-danger-bg: #FDE8E6;
+  --color-badge-danger-text: #A83226;
+
+  /* Slate Scale: Remapped to Warm Oatmeal Canvas, White Cards & Forest Charcoal Text */
+  --color-slate-50: #FAF8F5;
+  --color-slate-100: #0F281E; /* Primary Headings & Titles */
+  --color-slate-200: #2C3E35; /* Body Text & Data */
+  --color-slate-300: #4B5E54;
+  --color-slate-400: #6B7C72; /* Muted Text / Sage Gray */
+  --color-slate-500: #8C9B92;
+  --color-slate-600: #C2CBC5;
+  --color-slate-700: #EBE6DC; /* Card Borders & Dividers */
+  --color-slate-800: #FFFFFF; /* Pure White Cards */
+  --color-slate-900: #F3EFE8; /* Secondary Panels / Inputs */
+  --color-slate-950: #F9F7F2; /* Warm Oatmeal Canvas */
+
+  /* Emerald Scale: Natural Forest Green */
+  --color-emerald-50: #E6F4EA;
+  --color-emerald-100: #CEECD5;
+  --color-emerald-200: #A8DCB5;
+  --color-emerald-300: #6DC285;
+  --color-emerald-400: #1E653F;
+  --color-emerald-500: #1E653F;
+  --color-emerald-600: #164D30;
+  --color-emerald-700: #0F281E;
+  --color-emerald-800: #0C2118;
+  --color-emerald-900: #0F281E;
+  --color-emerald-950: #081710;
+
+  /* Cyan Scale: Roasted Honey Gold / Accent */
+  --color-cyan-50: #FDF9F2;
+  --color-cyan-100: #FAF0DF;
+  --color-cyan-200: #F4DFB8;
+  --color-cyan-300: #ECC786;
+  --color-cyan-400: #C8963E; /* Hero Metric / Callouts */
+  --color-cyan-500: #C8963E; /* Gold Accent */
+  --color-cyan-600: #B3822E; /* Gold Hover */
+  --color-cyan-700: #8C621E;
+  --color-cyan-800: #6B4916;
+  --color-cyan-900: #422B0A;
+  --color-cyan-950: #231604;
+
+  /* Amber Scale: Warm Amber Status */
+  --color-amber-50: #FEF9EB;
+  --color-amber-100: #FEF3D6;
+  --color-amber-200: #FDE2A2;
+  --color-amber-300: #FBCB64;
+  --color-amber-400: #8F6010; /* Text Warning */
+  --color-amber-500: #C8963E;
+  --color-amber-600: #8F6010;
+  --color-amber-700: #734C0B;
+  --color-amber-800: #593907;
+  --color-amber-900: #382303;
+  --color-amber-950: #FEF3D6;
+
+  /* Red & Orange Scales: Muted Brick Red */
+  --color-red-50: #FDF1EF;
+  --color-red-100: #FDE8E6;
+  --color-red-200: #F9CDC8;
+  --color-red-300: #F2A49B;
+  --color-red-400: #A83226; /* Urgent / Out of Stock / Cancelled */
+  --color-red-500: #A83226;
+  --color-red-600: #8F281D;
+  --color-red-700: #701C13;
+  --color-red-800: #57150D;
+  --color-red-900: #360C07;
+  --color-red-950: #FDE8E6;
+
+  --color-orange-50: #FDF1EF;
+  --color-orange-100: #FDE8E6;
+  --color-orange-200: #F9CDC8;
+  --color-orange-300: #F2A49B;
+  --color-orange-400: #A83226;
+  --color-orange-500: #C8963E;
+  --color-orange-600: #8F6010;
+
+  /* Blue Scale: Forest Green comparison line */
+  --color-blue-400: #0F281E;
+  --color-blue-500: #0F281E;
+  --color-blue-600: #183D2F;
+
+  --color-rose-400: #A83226;
+  --color-rose-500: #A83226;
 }
 
 @layer base {
   body {
-    @apply bg-slate-900 text-slate-100 antialiased;
+    @apply bg-[#F9F7F2] text-[#2C3E35] antialiased selection:bg-[#C8963E]/20 selection:text-[#0F281E];
   }
 }
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #EBE6DC;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #D8D1C2;
+}
+

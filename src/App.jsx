@@ -32,13 +32,11 @@ function App() {
 
   return (
     <FinancialProvider>
-      <div className="flex h-screen bg-slate-950 text-slate-100 overflow-hidden font-sans">
+      <div className="flex h-screen bg-[#F9F7F2] text-[#2C3E35] overflow-hidden font-sans">
         <Sidebar currentView={currentView} setCurrentView={setCurrentView} />
         <div className="flex-1 flex flex-col h-screen overflow-hidden relative">
-          <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-emerald-500/10 blur-[120px] rounded-full pointer-events-none"></div>
-          
           <Topbar title={getTitle()} />
-          <main className="flex-1 overflow-y-auto relative z-10 scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-transparent">
+          <main className="flex-1 overflow-y-auto relative z-10 scrollbar-thin scrollbar-thumb-[#EBE6DC] scrollbar-track-transparent">
             {renderView()}
           </main>
         </div>
