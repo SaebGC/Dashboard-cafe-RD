@@ -1,4 +1,3 @@
-import React from 'react';
 import { Card } from '../ui/Card';
 import { useFinancial } from '../../context/FinancialContext';
 import { Calendar, CreditCard } from 'lucide-react';

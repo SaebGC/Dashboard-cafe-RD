@@ -1,11 +1,12 @@
-import React, { useState, useMemo } from 'react';
-import { Card } from '../ui/Card';
-import { Button } from '../ui/Button';
-import { ConfirmModal } from '../ui/ConfirmModal';
-import { useFinancial } from '../../context/FinancialContext';
+import { useState, useMemo, type FormEvent } from 'react';
+import { Card } from '../../ui/Card';
+import { Button } from '../../ui/Button';
+import { ConfirmModal } from '../../ui/ConfirmModal';
+import { useFinancial } from '../../../context/FinancialContext';
 import { Plus, Trash2, Search, X, Coffee, PlusCircle, MinusCircle, RotateCcw } from 'lucide-react';
+import type { SalesItem, ConfirmModalConfig } from '../../../types';
 
-export const SalesEntryView = () => {
+export const AdminSalesEntryView = () => {
   const { 
     salesItems, addSalesItem, deleteSalesItem, 
     incrementSale, decrementSale, updateUnitPrice, 
@@ -14,21 +15,17 @@ export const SalesEntryView = () => {
 
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('All');
-  
-  // Modals state
-  const [confirmModalConfig, setConfirmModalConfig] = useState({ isOpen: false });
+  const [confirmModalConfig, setConfirmModalConfig] = useState<ConfirmModalConfig>({ isOpen: false });
 
-  // Add item form state
   const [showAddForm, setShowAddForm] = useState(false);
   const [newItemName, setNewItemName] = useState('');
   const [newCategory, setNewCategory] = useState('');
   const [newUnitPrice, setNewUnitPrice] = useState('');
 
-  // Extract unique categories dynamically
-  const categories = ['All', ...new Set(salesItems.map(item => item.category))].filter(Boolean);
+  const categories: string[] = ['All', ...new Set(salesItems.map((item) => item.category))].filter(Boolean);
 
   const filteredItems = useMemo(() => {
-    return salesItems.filter(item => {
+    return salesItems.filter((item) => {
       const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase());
       const matchesCategory = activeCategory === 'All' || item.category === activeCategory;
       return matchesSearch && matchesCategory;
@@ -37,7 +34,7 @@ export const SalesEntryView = () => {
 
   const totalUnitsSold = salesItems.reduce((acc, item) => acc + (item.unitsSold || 0), 0);
 
-  const handleAddItem = (e) => {
+  const handleAddItem = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!newItemName || !newCategory || !newUnitPrice) return;
     
@@ -53,11 +50,11 @@ export const SalesEntryView = () => {
     setShowAddForm(false);
   };
 
-  const openDeleteModal = (item) => {
+  const openDeleteModal = (item: SalesItem) => {
     setConfirmModalConfig({
       isOpen: true,
-      title: "Eliminar Producto",
-      message: `¿Estás seguro de que deseas eliminar "${item.name}" del catálogo de hoy?`,
+      title: "Eliminar Producto del Catálogo",
+      message: `¿Estás seguro de que deseas eliminar "${item.name}" del catálogo? Esta acción no se puede deshacer.`,
       confirmText: "Eliminar",
       onConfirm: () => deleteSalesItem(item.id),
       isDestructive: true
@@ -67,7 +64,7 @@ export const SalesEntryView = () => {
   const openResetModal = () => {
     setConfirmModalConfig({
       isOpen: true,
-      title: "Reiniciar Día",
+      title: "Reiniciar Ventas del Día",
       message: "¿Estás seguro de que deseas reiniciar todas las ventas del día a 0? Esta acción no se puede deshacer.",
       confirmText: "Reiniciar",
       onConfirm: resetDaySales,
@@ -120,7 +117,7 @@ export const SalesEntryView = () => {
               <label className="text-xs text-[#6B7C72] uppercase font-bold tracking-wider">Nombre del Producto</label>
               <input 
                 type="text" 
-                placeholder="Ej. Latte Machiato" 
+                placeholder="Ej. Latte Vainilla" 
                 value={newItemName} 
                 onChange={(e) => setNewItemName(e.target.value)} 
                 required 
@@ -131,7 +128,7 @@ export const SalesEntryView = () => {
               <label className="text-xs text-[#6B7C72] uppercase font-bold tracking-wider">Categoría</label>
               <input 
                 type="text" 
-                placeholder="Ej. Café Caliente" 
+                placeholder="Ej. Bebidas Calientes" 
                 value={newCategory} 
                 onChange={(e) => setNewCategory(e.target.value)} 
                 required 
@@ -174,7 +171,7 @@ export const SalesEntryView = () => {
         
         {/* Category Pills */}
         <div className="flex flex-wrap gap-2">
-          {categories.map(cat => (
+          {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
@@ -206,7 +203,7 @@ export const SalesEntryView = () => {
             <p className="text-[#6B7C72] font-medium text-lg">No se encontraron productos.</p>
           </div>
         ) : (
-          filteredItems.map(item => {
+          filteredItems.map((item) => {
             const subtotal = (item.unitPrice || 0) * (item.unitsSold || 0);
             return (
               <Card key={item.id} className="p-5 flex flex-col justify-between border-[#EBE6DC] hover:border-[#C8963E]/40 transition-colors shadow-sm bg-white">
@@ -228,7 +225,7 @@ export const SalesEntryView = () => {
                   </div>
                   
                   <div className="mb-4">
-                    <label className="text-xs text-[#6B7C72] font-semibold mb-1 block">Precio C/U</label>
+                    <label className="text-xs text-[#6B7C72] font-semibold mb-1 block">Precio Unitario Editable</label>
                     <div className="relative">
                       <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#6B7C72] font-bold">RD$</span>
                       <input 
@@ -277,7 +274,7 @@ export const SalesEntryView = () => {
 
       <ConfirmModal 
         {...confirmModalConfig}
-        onClose={() => setConfirmModalConfig(prev => ({ ...prev, isOpen: false }))}
+        onClose={() => setConfirmModalConfig((prev) => ({ ...prev, isOpen: false }))}
       />
     </div>
   );

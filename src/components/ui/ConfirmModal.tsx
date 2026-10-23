@@ -1,9 +1,19 @@
-import React from 'react';
 import { AlertTriangle, X } from 'lucide-react';
 import { Button } from './Button';
 
+export interface ConfirmModalProps {
+  isOpen?: boolean;
+  title?: string;
+  message?: string;
+  confirmText?: string;
+  cancelText?: string;
+  onConfirm?: () => void;
+  onClose: () => void;
+  isDestructive?: boolean;
+}
+
 export const ConfirmModal = ({ 
-  isOpen, 
+  isOpen = false, 
   title = "¿Estás seguro?", 
   message = "¿Estás seguro de que deseas realizar esta acción?", 
   confirmText = "Confirmar", 
@@ -11,7 +21,7 @@ export const ConfirmModal = ({
   onConfirm, 
   onClose, 
   isDestructive = true 
-}) => {
+}: ConfirmModalProps) => {
   if (!isOpen) return null;
 
   return (
@@ -36,7 +46,7 @@ export const ConfirmModal = ({
             </Button>
             <Button 
               variant={isDestructive ? "danger" : "primary"} 
-              onClick={() => { onConfirm(); onClose(); }}
+              onClick={() => { onConfirm?.(); onClose(); }}
               className="px-5"
             >
               {confirmText}

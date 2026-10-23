@@ -1,0 +1,1 @@
+export { EmpleadoPosView } from './EmpleadoPosView';

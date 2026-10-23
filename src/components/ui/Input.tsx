@@ -1,6 +1,24 @@
-import React from 'react';
+import type { ChangeEvent } from 'react';
 
-export const Input = ({ label, type = 'text', value, onChange, placeholder, required = false, className = '' }) => {
+export interface InputProps {
+  label?: string;
+  type?: string;
+  value?: string | number;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  placeholder?: string;
+  required?: boolean;
+  className?: string;
+}
+
+export const Input = ({
+  label,
+  type = 'text',
+  value,
+  onChange,
+  placeholder,
+  required = false,
+  className = '',
+}: InputProps) => {
   return (
     <div className={`space-y-1 ${className}`}>
       {label && <label className="text-xs font-semibold uppercase tracking-wider text-[#6B7C72]">{label}</label>}

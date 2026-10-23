@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import { useState, type FormEvent } from 'react';
 import { Card } from '../ui/Card';
 import { Button } from '../ui/Button';
 import { ConfirmModal } from '../ui/ConfirmModal';
 import { useFinancial } from '../../context/FinancialContext';
 import { Plus, Trash2, Edit2, Check, X, CreditCard } from 'lucide-react';
+import type { Expense, ConfirmModalConfig } from '../../types';
 
 export const ExpensesView = () => {
   const { expenses, addExpense, updateExpense, deleteExpense, toggleExpenseStatus, formatDOP } = useFinancial();
@@ -11,13 +12,13 @@ export const ExpensesView = () => {
   const [expenseName, setExpenseName] = useState('');
   const [amount, setAmount] = useState('');
   
-  const [editingId, setEditingId] = useState(null);
+  const [editingId, setEditingId] = useState<string | null>(null);
   const [editName, setEditName] = useState('');
-  const [editAmount, setEditAmount] = useState('');
+  const [editAmount, setEditAmount] = useState<string | number>('');
   
-  const [confirmModalConfig, setConfirmModalConfig] = useState({ isOpen: false });
+  const [confirmModalConfig, setConfirmModalConfig] = useState<ConfirmModalConfig>({ isOpen: false });
 
-  const handleAddExpense = (e) => {
+  const handleAddExpense = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!expenseName || !amount) return;
     
@@ -30,13 +31,13 @@ export const ExpensesView = () => {
     setAmount('');
   };
 
-  const startEdit = (expense) => {
+  const startEdit = (expense: Expense) => {
     setEditingId(expense.id);
     setEditName(expense.expenseName);
     setEditAmount(expense.amount);
   };
 
-  const saveEdit = (id) => {
+  const saveEdit = (id: string) => {
     updateExpense(id, { expenseName: editName, amount: Number(editAmount) });
     setEditingId(null);
   };
@@ -45,7 +46,7 @@ export const ExpensesView = () => {
     setEditingId(null);
   };
 
-  const openDeleteModal = (expense) => {
+  const openDeleteModal = (expense: Expense) => {
     setConfirmModalConfig({
       isOpen: true,
       title: "Eliminar Gasto",
@@ -58,7 +59,7 @@ export const ExpensesView = () => {
 
   return (
     <div className="p-8 animate-in fade-in duration-500 space-y-6">
-         <Card className="bg-white border-[#EBE6DC] shadow-sm">
+      <Card className="bg-white border-[#EBE6DC] shadow-sm">
         <div className="mb-6">
           <h3 className="text-lg font-bold text-[#0F281E] flex items-center">
             <CreditCard size={20} className="mr-2 text-[#C8963E]" />
